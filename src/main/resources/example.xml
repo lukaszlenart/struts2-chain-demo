@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<!-- 
+  - This file is included by the struts.xml file as an example
+  - of how to break up the configuration file into multiple files.
+-->
+<struts>
+    <package name="example" namespace="/example" extends="struts-default">
+
+        <default-action-ref name="SomeAction" />
+
+        <action name="SomeAction" class="com.demo.example.SomeAction">
+            <result type="chain">
+                <param name="actionName">OtherAction</param>
+            </result>
+        </action>
+
+        <action name="OtherAction" class="com.demo.example.OtherAction">
+            <interceptor-ref name="chainStack">
+                <param name="chain.includes">prop1</param>
+            </interceptor-ref>
+            <result>/WEB-INF/example/OtherAction.jsp</result>
+        </action>
+
+    </package>
+</struts>
